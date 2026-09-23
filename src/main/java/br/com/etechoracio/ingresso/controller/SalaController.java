@@ -1,6 +1,7 @@
 package br.com.etechoracio.ingresso.controller;
 
 
+import br.com.etechoracio.ingresso.dto.SalaRequestDTO;
 import br.com.etechoracio.ingresso.dto.SalaResponseDTO;
 import br.com.etechoracio.ingresso.service.SalaService;
 import org.springframework.beans.factory.annotation.Autowire;
@@ -23,16 +24,16 @@ public class SalaController {
         this.salaService = salaService;
     }
 
-    // ==========================================
+
     // ETAPA 1
     // GET /salas
-    // ==========================================
+
     @GetMapping
     public List<SalaResponseDTO> listar() {
 
         return salaService.listarSalasAtivas();
     }
-
+//Etapa 2
     @GetMapping("/{id}")
     public ResponseEntity<SalaResponseDTO> buscarPorId(
             @PathVariable Long id) {
@@ -42,5 +43,18 @@ public class SalaController {
                 .orElseGet(() ->
                         ResponseEntity.notFound().build()
                 );
+
+    }
+    //Etapa 3
+    @PostMapping
+    public ResponseEntity<SalaResponseDTO> criar(
+            @RequestBody SalaRequestDTO requestDTO
+    ) {
+
+        SalaResponseDTO salaCriada = salaService.criar(requestDTO);
+
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(salaCriada);
     }
 }

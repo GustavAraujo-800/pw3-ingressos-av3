@@ -14,4 +14,7 @@ public interface SalaMapper {
 
     // Etapa 2  - converte uma Sala para DTO
     SalaResponseDTO toResponseDTO(Sala sala);
+
+    // Etapa 3 - converte Request DTO para entidade
+    Sala toEntity(SalaRequestDTO requestDTO);
 }
