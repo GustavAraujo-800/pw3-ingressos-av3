@@ -12,4 +12,6 @@ public interface SalaMapper {
 
     List<SalaResponseDTO> toResponseDTO(List<Sala> salas);
 
+    // Etapa 2  - converte uma Sala para DTO
+    SalaResponseDTO toResponseDTO(Sala sala);
 }

@@ -10,5 +10,6 @@ public interface SalaRepository extends JpaRepository<Sala, Long> {
 
     // Etapa 1 - busca todas as salas ativas
     List<Sala> findByDataExclusaoIsNull();
-
+    // Etapa 2 - busca uma sala pelo ID somente se estiver ativa
+    Optional<Sala> findByIdAndDataExclusaoIsNull(Long id);
 }

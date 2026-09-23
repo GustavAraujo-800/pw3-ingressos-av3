@@ -17,7 +17,7 @@ import java.util.List;
 public class SalaController {
 
     @Autowired
-    private  SalaService salaService;
+    private SalaService salaService;
 
     public SalaController(SalaService salaService) {
         this.salaService = salaService;
@@ -32,3 +32,15 @@ public class SalaController {
 
         return salaService.listarSalasAtivas();
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<SalaResponseDTO> buscarPorId(
+            @PathVariable Long id) {
+
+        return salaService.buscarPorId(id)
+                .map(ResponseEntity::ok)
+                .orElseGet(() ->
+                        ResponseEntity.notFound().build()
+                );
+    }
+}
